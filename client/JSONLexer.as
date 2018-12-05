@@ -1,15 +1,13 @@
 ﻿
 package {
 	public class JSONTokenizer {
-		private var strict:Boolean;
 		private var obj:Object;
 		private var jsonString:String;
 		private var loc:int;
 		private var ch:String;
 		
-		public function JSONTokenizer( s:String, strict:Boolean ) {
+		public function JSONTokenizer(s:String) {
 			jsonString = s;
-			this.strict = strict;
 			loc = 0;
 			nextChar();
 		}
@@ -184,7 +182,7 @@ package {
 				nextChar();
 				if (isDigit(ch))
 					parseError("Not a number");
-				else if (!strict && ch == 'x') {
+				else if (ch == 'x') {
 					input += ch;
 					nextChar();
 					if (isHexDigit(ch)) {
