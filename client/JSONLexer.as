@@ -1,12 +1,12 @@
 ﻿
 package {
-	public class JSONTokenizer {
+	public class JSONLexer {
 		private var obj:Object;
 		private var jsonString:String;
 		private var loc:int;
 		private var ch:String;
 		
-		public function JSONTokenizer(s:String) {
+		public function JSONLexer(s:String) {
 			jsonString = s;
 			loc = 0;
 			nextChar();

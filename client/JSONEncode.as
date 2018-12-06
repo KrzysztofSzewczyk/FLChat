@@ -93,7 +93,8 @@ package {
 					s += escapeString(key) + ":" + convertToString(value);
 				}
 			} else {
-				for each (var v:XML in classInfo..*.(name() == "variable" || (name() == "accessor" & attribute("access").charAt(0 == "r")))) {
+				for each (var v:XML in classInfo..*.(name() == "variable" || (name() == "accessor" && attribute("access").charAt(0) == "r"))){
+
 					if (v.metadata && v.metadata.(@name == "Transient").length() > 0)
 						continue;
 					if (s.length > 0)

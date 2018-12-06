@@ -1,0 +1,57 @@
+﻿client.swf Movie Report
+------------------------
+
+Frame #    Frame Bytes    Total Bytes    Scene
+-------    -----------    -----------    -----
+      1          32318          32318    Scene 1 (AS 3.0 Classes Export Frame)
+
+Scene      Shape Bytes    Text Bytes    ActionScript Bytes
+-------    -----------    ----------    ------------------
+Scene 1              0             0                 28647
+
+Symbol                          Shape Bytes    Text Bytes    ActionScript Bytes
+----------------------------    -----------    ----------    ------------------
+Button                                    0             0                     0
+Button_disabledSkin                      86             0                     0
+Button_downSkin                         181             0                     0
+Button_emphasizedSkin                    93             0                     0
+Button_overSkin                         168             0                     0
+Button_selectedDisabledSkin             139             0                     0
+Button_selectedDownSkin                 137             0                     0
+Button_selectedOverSkin                 138             0                     0
+Button_selectedUpSkin                   138             0                     0
+Button_upSkin                           187             0                     0
+focusRectSkin                            65             0                     0
+Component_avatar                         21             0                     0
+ScrollArrowDown_disabledSkin              0             0                     0
+ScrollArrowDown_downSkin                 70             0                     0
+ScrollArrowDown_icon                      0             0                     0
+arrowIcon                                27             0                     0
+ScrollArrowDown_overSkin                 71             0                     0
+ScrollArrowDown_upSkin                   71             0                     0
+ScrollArrowUp_disabledSkin               71             0                     0
+ScrollArrowUp_downSkin                   71             0                     0
+ScrollArrowUp_icon                        0             0                     0
+ScrollArrowUp_overSkin                   71             0                     0
+ScrollArrowUp_upSkin                      0             0                     0
+ScrollBar_thumbIcon                      47             0                     0
+ScrollThumb_downSkin                    104             0                     0
+ScrollThumb_overSkin                    103             0                     0
+ScrollThumb_upSkin                      104             0                     0
+ScrollTrack_skin                         49             0                     0
+TextArea_disabledSkin                    69             0                     0
+TextArea_upSkin                          63             0                     0
+TextInput_disabledSkin                    0             0                     0
+TextInput_upSkin                          0             0                     0
+TextArea                                  0             0                     0
+UIScrollBar                               0             0                     0
+TextInput                                 0             0                     0
+fl.core.ComponentShim                     0             0                     0
+
+ActionScript Bytes    Location
+------------------    --------
+             28647    Scene 1:Frame 1
+
+
+
+

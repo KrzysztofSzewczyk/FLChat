@@ -1,20 +1,15 @@
 ﻿
 package {
 	public class JSONDecode {
-		private var strict:Boolean;
 		private var value:*;
-		private var tokenizer:JSONTokenizer;
+		private var lexer:JSONLexer;
 		private var token:JSONToken;
 		
-		public function JSONDecoder(s:String, strict:Boolean) {	
-			this.strict = strict;
-			tokenizer = new JSONTokenizer(s, strict);
+		public function JSONDecode(s:String) {	
+			lexer = new JSONLexer(s);
 			
 			nextToken();
 			value = parseValue();
-			
-			if (strict && nextToken() != null)
-				tokenizer.parseError("Unexpected characters left in input stream");
 		}
 		
 		public function getValue():* {
@@ -22,7 +17,7 @@ package {
 		}
 		
 		private function nextToken():JSONToken {
-			return token = tokenizer.getNextToken();
+			return token = lexer.getNextToken();
 		}
 		
 		private function parseArray():Array {
@@ -30,12 +25,12 @@ package {
 			nextToken();
 			if (token.type == JSONTokenType.RIGHT_BRACKET)
 				return a;
-			else if (!strict && token.type == JSONTokenType.COMMA) {
+			else if (token.type == JSONTokenType.COMMA) {
 				nextToken();
 				if ( token.type == JSONTokenType.RIGHT_BRACKET )
 					return a;
 				else
-					tokenizer.parseError("Leading commas are not supported.");
+					lexer.parseError("Leading commas are not supported.");
 			}
 			
 			while (true) {
@@ -45,12 +40,10 @@ package {
 					return a;
 				else if ( token.type == JSONTokenType.COMMA ) {
 					nextToken();
-					if (!strict) {
-						if (token.type == JSONTokenType.RIGHT_BRACKET)
-							return a;
-					}
+					if (token.type == JSONTokenType.RIGHT_BRACKET)
+						return a;
 				} else
-					tokenizer.parseError("Expected ] or ,");
+					lexer.parseError("Expected ] or ,");
 			}
             return null;
 		}
@@ -68,7 +61,7 @@ package {
 				if (token.type == JSONTokenType.RIGHT_BRACE)
 					return o;
 				else
-					tokenizer.parseError("Leading commas are not supported.");
+					lexer.parseError("Leading commas are not supported.");
 			}
 			
 			while (true) {
@@ -86,18 +79,18 @@ package {
 							if (token.type == JSONTokenType.RIGHT_BRACE)
 								return o;
 						} else
-							tokenizer.parseError("Expected } or ,");
+							lexer.parseError("Expected } or ,");
 					} else
-						tokenizer.parseError("Expected :");
+						lexer.parseError("Expected :");
 				} else
-					tokenizer.parseError("Expected string");
+					lexer.parseError("Expected string");
 			}
             return null;
 		}
 		
 		private function parseValue():Object {
 			if (token == null)
-				tokenizer.parseError("Unexpected end of input");
+				lexer.parseError("Unexpected end of input");
 			switch (token.type) {
 				case JSONTokenType.LEFT_BRACE:
 					return parseObject();
@@ -112,7 +105,7 @@ package {
 				case JSONTokenType.NAN:
 					return token.value;
 				default:
-					tokenizer.parseError("Unexpected " + token.value);
+					lexer.parseError("Unexpected " + token.value);
 			}
             return null;
 		}

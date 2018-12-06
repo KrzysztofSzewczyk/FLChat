@@ -43,7 +43,7 @@ class Auth extends AbstractMethod {
 
 class Send extends AbstractMethod {
 	exec() {
-		this.response.action = 'Receive';
+		this.response.action = 'R';
 		this.response.params = this.params;
 		this.response.send(usrs);
 	}
@@ -68,9 +68,9 @@ class Request {
 		
 		if(this.action == "AbstractMethod")
 			method = new AbstractMethod();
-		else if(this.action == "Auth")
+		else if(this.action == "A")
 			method = new Auth();
-		else if(this.action == "Send")
+		else if(this.action == "S")
 			method = new Send();
 		
 		method.setRequest(this);
@@ -118,7 +118,9 @@ class Response {
 
 let server = net.createServer(function (stream) {
 	stream.setEncoding("utf8");
-		
+    stream.write(policy);
+	usrs.push(stream);
+    
 	stream.on('data', function(data) {	
 		if (data === '<policy-file-request/>\0') {
 			stream.write(policy);
@@ -129,11 +131,6 @@ let server = net.createServer(function (stream) {
 		method.setStream(stream);
 		method.exec();
 	});
-
-	stream.on("connect", function () {
-		stream.write(policy);
-		usrs.push(stream);
-	});
 	
 
 	stream.on("end", function () {
@@ -143,4 +140,4 @@ let server = net.createServer(function (stream) {
 	});
 });
 
-server.listen(40020, "localhost");
+server.listen(40020, "0.0.0.0");
